@@ -9,14 +9,14 @@ def get_latest_git_tag(
         default: str = "0.0.0"
 ) -> str:
     try:
-        process_output = subprocess.check_output(["git", "describe", "--tags"])
+        process_output = subprocess.check_output("git describe --tags --abbrev=0")
         tag = process_output.strip().decode()
     except subprocess.CalledProcessError:
         if default_or_error == "default":
             print(f"No git tag found. Using default git tag {default}.")
             tag = default
         elif default_or_error == "error":
-            raise AssertionError("git describe --tags failed to return a tag.")
+            raise AssertionError("git describe --tags --abbrev=0 failed to return a tag.")
         else:
             raise ValueError("default_or_error should be 'default' or 'error'")
     return tag
