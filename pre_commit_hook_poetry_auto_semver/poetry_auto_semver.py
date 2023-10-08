@@ -49,7 +49,7 @@ def main():
     if project_version <= tag_version:
         print(f"Should bump project version. Poetry project version: {project_version} <= Git tag version: {tag_version}.")
         next_version = tag_version.next_version(part="patch")
-        subprocess.run(f"poetry install && poetry version {next_version}")
+        subprocess.run(f"poetry version {next_version}")
     else:
         print(f"Shouldn't bump project version. Poetry project version: {project_version} > Git tag version: {tag_version}")
 

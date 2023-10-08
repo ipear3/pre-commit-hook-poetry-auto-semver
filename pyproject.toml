@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "pre-commit-hook-poetry-auto-semver"
-version = "0.0.1"
+name = "pre_commit_hook_poetry_auto_semver"
+version = "0.0.2"
 description = ""
 authors = ["Ian Pearthree <52967928+ipear3@users.noreply.github.com>"]
 readme = "README.md"
 packages = [
-    { include = "pre-commit-hook-poetry-auto-semver" }
+    { include = "pre_commit_hook_poetry_auto_semver" }
 ]
 
 [tool.poetry.dependencies]
@@ -14,7 +14,7 @@ semver = "^3.0.1"
 pre-commit = "^3.4.0"
 
 [tool.poetry.scripts]
-poetry-auto-semver = "pre-commit-hook-poetry-auto-semver.poetry-auto-semver:main"
+poetry-auto-semver = "pre_commit_hook_poetry_auto_semver.poetry_auto_semver:main"
 
 [build-system]
 requires = ["poetry-core"]

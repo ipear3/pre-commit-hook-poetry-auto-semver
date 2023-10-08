@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "pre-commit-hook-poetry-auto-semver/**"
+      - "pre_commit_hook_poetry_auto_semver/**"
       - pyproject.toml
       - poetry.lock
 
