@@ -1,0 +1,43 @@
+name: Draft Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "pre-commit-hook-poetry-auto-semver/**"
+      - pyproject.toml
+      - poetry.lock
+
+jobs:
+  draft-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.5"
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python - -y
+
+      - name: Add Poetry to path
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install project
+        run: poetry install
+
+      # TODO: Test project
+
+      - name: Build project for distribution
+        run: poetry build
+
+      - name: Draft release
+        run: gh release create $(poetry version --short) ./dist/* --draft --title $(poetry version --short)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

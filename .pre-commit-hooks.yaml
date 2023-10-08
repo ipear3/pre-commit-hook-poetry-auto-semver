@@ -1,0 +1,11 @@
+-   id: poetry-auto-semver
+    name: check for or increment poetry project's semantic version
+    description: makes source code changes increment the poetry project's version.
+    language: python
+    additional_dependencies:
+      - semver
+      - poetry
+    entry: poetry-auto-semver
+    files: src.*|.*py|poetry.lock|pyproject.toml
+    pass_filenames: false
+    stages: [push]
